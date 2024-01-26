@@ -1,0 +1,85 @@
+{% extends 'layoutCinepolis.html' %}
+
+{% block content %}
+<style>
+  .form-check {
+    padding: 10px;
+  }
+  .title {
+    text-align: center;
+  }
+  .card {
+    width: 500px;
+    border: solid 1px #cdcdcd;
+    padding: 5px;
+    box-shadow: 3px 3px 0px 0px #000000;
+    border-radius: 2%;
+    margin-bottom: 20px; /* Espacio entre tarjetas */
+  }
+  input{
+    margin-left: 5px;
+  }
+  .container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .input-group {
+    margin-bottom: 10px;
+  }
+  .button-group {
+    text-align: center;
+  }
+</style>
+
+<div class="d-flex justify-content-center mb-5">
+  <img src="../static/imgs/logo.png" alt="" srcset="">
+</div>
+<form action="/procesar" method="POST">
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Entradas</h5>
+        <div class="input-group">
+          <label for="nombre"  class="form-label">Nombre</label>
+          <input type="text" id="nombre" name="nombre"  class="form-control mx-4" required value="{{ nombre }}">
+        </div>
+        <div class="input-group">
+          <label for="cantidadCompradores">Cantidad Compradores</label>
+          <input type="number" id="cantidadCompradores" name="cantidadCompradores" class="form-control mx-4" required value="{{ cantidadCompradores }}">
+        </div>
+        <div class="form-check">
+          <input type="radio" id="tarjetaSi" name="tarjetaCineco" value="Si">
+          <label for="tarjetaSi">Si</label>
+          <input type="radio" id="tarjetaNo" name="tarjetaCineco" value="No">
+          <label for="tarjetaNo">No</label>
+        </div>
+        <div class="input-group">
+          <label for="cantidadBoletos">Cantidad De Boletos</label>
+          <input type="number" id="cantidadBoletos" class="form-control mx-4" name="cantidadBoletos" required value="{{ cantidadBoletos }}">
+        </div>
+      </div>
+    </div>
+    <!-- Salidas -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Salidas</h5>
+        <div class="input-group">
+          <label for="valorPagar">Valor a Pagar</label>
+          <input type="text" id="valorPagar" class="form-control mx-4" name="valorPagar" disabled value="{{ valorPagar }}">
+        </div>
+        <div>
+          {{error}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="button-group">
+    <button type="submit" class="btn btn-primary">Procesar</button>
+    <button type="button" onclick="location.href='/cinepolis'" class="btn btn-warning">Salir</button>
+  </div>
+</form>
+
+
+
+{% endblock %}

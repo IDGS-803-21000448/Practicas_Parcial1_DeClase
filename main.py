@@ -66,6 +66,8 @@ def multiplicar():
 def formulario():
     return render_template("formulario1.html")
 
+
+
 @app.route("/resultado",  methods=["GET", "POST"])
 def resultado():
     if request.method == "POST":
@@ -81,6 +83,40 @@ def resultado():
         elif operacion == "Division":
             return f"<h1> La Division es: {str(int(num1) / int(num2))} </h1>"
 
+
+@app.route("/cinepolis")
+def cinepolis():
+    return render_template("cinepolis.html")
+
+@app.route("/procesar",  methods=["POST"])
+def procesar():
+    nombre = request.form.get('nombre')
+    cantCompradores = int(request.form.get('cantidadCompradores'))
+    tarjetaCineco = request.form.get('tarjetaCineco')
+    cantBoletos = int(request.form.get('cantidadBoletos'))
+    precioBoleto = 12.00
+    maxBoletos = 7
+
+    porcentajeDescuento = 0
+    valorPagar = 0
+
+    if cantBoletos > cantCompradores * maxBoletos:
+        return render_template("cinepolis.html", error= "Error: No se puede comprar más de 7 boletos por persona",
+                           nombre = str(nombre),cantidadCompradores = str(cantCompradores)
+                            ,tarjetaCineco = tarjetaCineco, cantidadBoletos= cantBoletos  )
+
+    if cantBoletos > 0:
+        valorPagar = cantBoletos * precioBoleto
+        if cantBoletos > 5:
+            valorPagar *= 0.85
+        elif cantBoletos > 2 and cantBoletos <= 5:
+            valorPagar *= 0.90
+        if tarjetaCineco == 'Si':
+            valorPagar *= 0.90 
+        
+    return render_template("cinepolis.html", valorPagar = str(valorPagar), 
+                           nombre = str(nombre),cantidadCompradores = str(cantCompradores)
+                            ,tarjetaCineco = tarjetaCineco, cantidadBoletos= cantBoletos  )
 
 if __name__ == "__main__":
     app.run(debug=True)
