@@ -1,0 +1,32 @@
+{% extends 'layoutMain.html' %}
+
+{% block content %}
+{% import "_macros.html" as macros %}
+<div class="container">
+<h1>Calculadora de distancia</h1>
+
+
+
+    <form action="/distancia" method="POST">
+        <div class="row g-3">
+            <p>"("</p>
+            <div class="col-auto">{{macros.render_field(form.x1, class="form-controls")}}</div>
+            <div class="col-auto"> {{macros.render_field(form.y1, class="form-controls")}}</div>
+        </div>
+        <div class="row g-3">
+            <div class="col-auto">{{macros.render_field(form.x2, class="form-controls")}}</div> 
+            <div class="col-auto"> {{macros.render_field(form.y2, class="form-controls")}}</div>    
+        </div>
+            
+            
+           
+
+        <button type="submit" class="btn btn-primary" name="btn1" value="calcular">Calcular</button>
+    </form>
+    <h1>Resultado: {{res}}</h1>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,4 +1,7 @@
-from flask import Flask, render_template, request
+from math import sqrt, pow
+import forms
+from flask import Flask, render_template, request, template_rendered
+
 
 
 app = Flask(__name__)
@@ -93,7 +96,7 @@ def procesar():
     nombre = request.form.get('nombre')
     cantCompradores = int(request.form.get('cantidadCompradores'))
     tarjetaCineco = request.form.get('tarjetaCineco')
-    cantBoletos = int(request.form.get('cantidadBoletos'))
+    cantBoletos = int(request.form.get('cantidadBoletos')) 
     precioBoleto = 12.00
     maxBoletos = 7
 
@@ -101,9 +104,7 @@ def procesar():
     valorPagar = 0
 
     if cantBoletos > cantCompradores * maxBoletos:
-        return render_template("cinepolis.html", error= "Error: No se puede comprar más de 7 boletos por persona",
-                           nombre = str(nombre),cantidadCompradores = str(cantCompradores)
-                            ,tarjetaCineco = tarjetaCineco, cantidadBoletos= cantBoletos  )
+        return template_rendered("cinepolis.html")
 
     if cantBoletos > 0:
         valorPagar = cantBoletos * precioBoleto
@@ -114,9 +115,27 @@ def procesar():
         if tarjetaCineco == 'Si':
             valorPagar *= 0.90 
         
-    return render_template("cinepolis.html", valorPagar = str(valorPagar), 
+    return template_rendered("cinepolis.html", valorPagar = str(valorPagar), 
                            nombre = str(nombre),cantidadCompradores = str(cantCompradores)
                             ,tarjetaCineco = tarjetaCineco, cantidadBoletos= cantBoletos  )
+
+
+@app.route("/distancia",  methods=["GET","POST"])
+def distancia():
+    distancia_form = forms.DistanciaForm(request.form)
+    res = ""
+    if request.method == "POST":
+        x1 = distancia_form.x1.data
+        x2 = distancia_form.x2.data
+        y1 = distancia_form.y1.data
+        y2 = distancia_form.y2.data
+        res = sqrt((pow((x2-x1),2)) + (pow((y2-y1),2)))
+        
+
+
+    return render_template("distancia.html",
+                            form = distancia_form,
+                            res = res)
 
 if __name__ == "__main__":
     app.run(debug=True)
