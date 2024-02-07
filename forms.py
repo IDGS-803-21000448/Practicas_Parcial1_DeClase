@@ -9,7 +9,7 @@ class DistanciaForm(Form):
     y2=FloatField('y2')
    
 class ResistenciaForm(Form):
-    color1=SelectField('Color 1', choices=[('Negro', 'Negro'), ('Cafe', 'Cafe'), ('Rojo', 'Rojo'), ('Naranja', 'Naranja'), ('Amarillo', 'Amarillo') , ('Verde', 'Verde') , ('Azul', 'Azul') , ('Violeta', 'Violeta') , ('Gris', 'Gris')])
-    color2=SelectField('Color 2', choices=[('Negro', 'Negro'), ('Cafe', 'Cafe'), ('Rojo', 'Rojo'), ('Naranja', 'Naranja'), ('Amarillo', 'Amarillo') , ('Verde', 'Verde') , ('Azul', 'Azul') , ('Violeta', 'Violeta') , ('Gris', 'Gris')])
-    color3=SelectField('Color 3', choices=[('Negro', 'Negro'), ('Cafe', 'Cafe'), ('Rojo', 'Rojo'), ('Naranja', 'Naranja'), ('Amarillo', 'Amarillo') , ('Verde', 'Verde') , ('Azul', 'Azul') , ('Violeta', 'Violeta') , ('Gris', 'Gris')])
+    color1=SelectField('Color 1', choices=[('Negro', 'Negro'), ('Cafe', 'Cafe'), ('Rojo', 'Rojo'), ('Naranja', 'Naranja'), ('Amarillo', 'Amarillo') , ('Verde', 'Verde') , ('Azul', 'Azul') , ('Violeta', 'Violeta') , ('Gris', 'Gris'), ('Blanco', 'Blanco')])
+    color2=SelectField('Color 2', choices=[('Negro', 'Negro'), ('Cafe', 'Cafe'), ('Rojo', 'Rojo'), ('Naranja', 'Naranja'), ('Amarillo', 'Amarillo') , ('Verde', 'Verde') , ('Azul', 'Azul') , ('Violeta', 'Violeta') , ('Gris', 'Gris'), ('Blanco', 'Blanco')])
+    color3=SelectField('Color 3', choices=[('Negro', 'Negro'), ('Cafe', 'Cafe'), ('Rojo', 'Rojo'), ('Naranja', 'Naranja'), ('Amarillo', 'Amarillo') , ('Verde', 'Verde') , ('Azul', 'Azul') , ('Violeta', 'Violeta') , ('Gris', 'Gris'), ('Blanco', 'Blanco')])
     tolerancia=RadioField('Color de la Tolerancia', choices=[('5', 'Dorado'), ('10', 'Plata')])

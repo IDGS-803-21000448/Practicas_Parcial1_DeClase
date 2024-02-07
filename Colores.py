@@ -8,7 +8,8 @@ class Colores:
         'Verde': '#008000',
         'Azul': '#0000FF',
         'Violeta': '#EE82EE',
-        'Gris': '#808080'
+        'Gris': '#808080',
+        'Blanco': "#ffffff"
     }
 
     dict_colores_valores = {
@@ -20,7 +21,9 @@ class Colores:
         'Verde': 5,
         'Azul': 6,
         'Violeta': 7,
-        'Gris': 8
+        'Gris': 8,
+        'Blanco': 9
+
     }
 
     dict_colores_multi = {
@@ -32,7 +35,9 @@ class Colores:
         'Verde': 100000,
         'Azul': 1000000,
         'Violeta': 10000000,
-        'Gris': 100000000
+        'Gris': 100000000,
+        'Blanco': 1000000000
+
     }
 
     def __init__(self) -> None:
