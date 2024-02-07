@@ -1,5 +1,5 @@
 from wtforms import Form
-from wtforms import StringField, SelectField,RadioField, EmailField, IntegerField, FloatField
+from wtforms import StringField, SelectField, EmailField, IntegerField, FloatField, ColorField, RadioField
 
 
 class DistanciaForm(Form):
@@ -8,3 +8,8 @@ class DistanciaForm(Form):
     y1=FloatField('y1')
     y2=FloatField('y2')
    
+class ResistenciaForm(Form):
+    color1=SelectField('Color 1', choices=[('Negro', 'Negro'), ('Cafe', 'Cafe'), ('Rojo', 'Rojo'), ('Naranja', 'Naranja'), ('Amarillo', 'Amarillo') , ('Verde', 'Verde') , ('Azul', 'Azul') , ('Violeta', 'Violeta') , ('Gris', 'Gris')])
+    color2=SelectField('Color 2', choices=[('Negro', 'Negro'), ('Cafe', 'Cafe'), ('Rojo', 'Rojo'), ('Naranja', 'Naranja'), ('Amarillo', 'Amarillo') , ('Verde', 'Verde') , ('Azul', 'Azul') , ('Violeta', 'Violeta') , ('Gris', 'Gris')])
+    color3=SelectField('Color 3', choices=[('Negro', 'Negro'), ('Cafe', 'Cafe'), ('Rojo', 'Rojo'), ('Naranja', 'Naranja'), ('Amarillo', 'Amarillo') , ('Verde', 'Verde') , ('Azul', 'Azul') , ('Violeta', 'Violeta') , ('Gris', 'Gris')])
+    tolerancia=RadioField('Color de la Tolerancia', choices=[('5', 'Dorado'), ('10', 'Plata')])

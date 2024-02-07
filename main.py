@@ -2,6 +2,8 @@ from math import sqrt, pow
 import forms
 from flask import Flask, render_template, request, template_rendered
 
+from Colores import Colores
+
 
 
 app = Flask(__name__)
@@ -136,6 +138,40 @@ def distancia():
     return render_template("distancia.html",
                             form = distancia_form,
                             res = res)
+
+@app.route("/resistencias",  methods=["GET","POST"])
+def resistencia():
+    resistencia_form = forms.ResistenciaForm(request.form)
+    res = ""
+    colores = Colores()
+
+    if request.method == "POST":
+        color1 = resistencia_form.color1.data
+        hexColor1 = colores.getColor(color1)
+        color2 = resistencia_form.color2.data
+        hexColor2 = colores.getColor(color2)
+        color3 = resistencia_form.color3.data
+        hexColor3 = colores.getColor(color3)
+        tolerancia = resistencia_form.tolerancia.data
+
+        primer_banda = colores.get_primer_banda(color1)
+        segunda_banda = colores.get_segunda_banda(color2)
+        multiplicador = colores.get_tercer_banda(color3)
+
+
+        valor = int(str(primer_banda) + str(segunda_banda) ) * multiplicador
+
+        maximo = valor + (valor * (int(tolerancia)/100))
+
+        minimo = valor - (valor * (int(tolerancia)/100))
+
+
+
+
+    return render_template("resistencia.html",
+                            form = resistencia_form,
+                            hexColor1 = hexColor1, hexColor2 = hexColor2, hexColor3 = hexColor3, valor = valor, maximo = maximo, minimo = minimo)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
