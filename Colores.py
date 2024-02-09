@@ -8,8 +8,7 @@ class Colores:
         'Verde': '#008000',
         'Azul': '#0000FF',
         'Violeta': '#EE82EE',
-        'Gris': '#808080',
-        'Blanco': "#ffffff"
+        'Gris': '#808080'
     }
 
     dict_colores_valores = {
@@ -21,9 +20,7 @@ class Colores:
         'Verde': 5,
         'Azul': 6,
         'Violeta': 7,
-        'Gris': 8,
-        'Blanco': 9
-
+        'Gris': 8
     }
 
     dict_colores_multi = {
@@ -35,9 +32,7 @@ class Colores:
         'Verde': 100000,
         'Azul': 1000000,
         'Violeta': 10000000,
-        'Gris': 100000000,
-        'Blanco': 1000000000
-
+        'Gris': 100000000
     }
 
     def __init__(self) -> None:
@@ -48,9 +43,9 @@ class Colores:
 
     def get_primer_banda(self, color):
         return self.dict_colores_valores[color]
-    
+
     def get_segunda_banda(self, color):
         return self.dict_colores_valores[color]
-    
+
     def get_tercer_banda(self, color):
         return self.dict_colores_multi[color]

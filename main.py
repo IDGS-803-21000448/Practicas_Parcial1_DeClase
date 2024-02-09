@@ -144,7 +144,7 @@ def resistencia():
     resistencia_form = forms.ResistenciaForm(request.form)
     res = ""
     colores = Colores()
-
+    hexColor1 = hexColor2 = hexColor3 = valor = maximo = minimo = None
     if request.method == "POST":
         color1 = resistencia_form.color1.data
         hexColor1 = colores.getColor(color1)
@@ -171,7 +171,5 @@ def resistencia():
     return render_template("resistencia.html",
                             form = resistencia_form,
                             hexColor1 = hexColor1, hexColor2 = hexColor2, hexColor3 = hexColor3, valor = valor, maximo = maximo, minimo = minimo)
-
-
 if __name__ == "__main__":
     app.run(debug=True)
