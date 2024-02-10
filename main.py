@@ -158,7 +158,7 @@ def resistencia():
         segunda_banda = colores.get_segunda_banda(color2)
         multiplicador = colores.get_tercer_banda(color3)
 
-
+    
         valor = int(str(primer_banda) + str(segunda_banda) ) * multiplicador
 
         maximo = valor + (valor * (int(tolerancia)/100))

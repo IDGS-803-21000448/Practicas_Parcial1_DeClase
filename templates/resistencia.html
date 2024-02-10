@@ -33,11 +33,30 @@
         </div>
     </div>
     
-    <table>
-        <th>
-            <th></th>
-        </th>
-    </table>
+    <div class="d-flex justify-content-center mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Color 1</th>
+                    <th>Color 2</th>
+                    <th>Color 3</th>
+                    <th>Valor</th>
+                    <th>Máximo</th>
+                    <th>Mínimo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="background-color: {{ hexColor1 }};">{{ form.color1.data }}</td>
+                    <td style="background-color: {{ hexColor2 }};">{{ form.color2.data }}</td>
+                    <td style="background-color: {{ hexColor3 }};">{{ form.color3.data }}</td>
+                    <td>{{ valor }}</td>
+                    <td>{{ maximo }}</td>
+                    <td>{{ minimo }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     
 </div>
 
