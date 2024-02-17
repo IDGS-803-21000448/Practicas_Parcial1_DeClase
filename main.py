@@ -3,7 +3,7 @@ import forms
 from flask import Flask, render_template, request, template_rendered
 
 from Colores import Colores
-
+from diccionario import TraduccionesClass
 
 
 app = Flask(__name__)
@@ -165,11 +165,47 @@ def resistencia():
 
         minimo = valor - (valor * (int(tolerancia)/100))
 
-
-
-
     return render_template("resistencia.html",
                             form = resistencia_form,
                             hexColor1 = hexColor1, hexColor2 = hexColor2, hexColor3 = hexColor3, valor = valor, maximo = maximo, minimo = minimo)
+
+@app.route("/traducciones", methods=["GET", "POST"])
+def traducciones():
+    traduccionesForm = forms.TraduccionesForm(request.form)
+    traducirForm = forms.TraducirForm(request.form)
+    print(request.method)
+    if request.method == "POST" and traduccionesForm.validate():
+        espanol = traduccionesForm.espanol.data
+        ingles = traduccionesForm.ingles.data
+        manejador_traducciones = TraduccionesClass()  
+        manejador_traducciones.agregarPalabra(espanol, ingles)
+        mensaje = "Palabra agregada correctamente."
+        return render_template("traducciones.html", form=traduccionesForm, form2 = traducirForm, mensaje=mensaje)
+    else:
+        print("No entra en POST")
+        return render_template("traducciones.html", form=traduccionesForm, form2 = traducirForm,)
+
+
+@app.route("/traducir", methods=["POST"])
+def traducir():
+    
+    traduccionesForm = forms.TraduccionesForm(request.form)
+    traducirForm = forms.TraducirForm(request.form)
+    print("traducir")
+    if traducirForm.validate():
+        palabra = traducirForm.palabra.data
+        idioma_destino = traducirForm.idioma.data
+        manejador_traducciones = TraduccionesClass()  
+        
+        if idioma_destino == '1':  
+            tipo = 2  
+        else:  
+            tipo = 1  
+        
+        mensaje = manejador_traducciones.obtenerPalabra(tipo, palabra)
+        print(mensaje)
+        return render_template("traducciones.html",form = traduccionesForm, form2 = traducirForm,palabra_original=palabra, mensaje=mensaje, idioma_destino=idioma_destino)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
